@@ -96,7 +96,7 @@ const MobileApps = (props) => {
         </Hidden>
         <Grid item container direction="column" className={classes.heading}>
           <Grid item>
-            <Typography variant="h2" align={matchesMD ? "center" : undefined}>
+            <Typography variant="h1" align={matchesMD ? "center" : undefined}>
               IOS/Android Apps Development
             </Typography>
           </Grid>
