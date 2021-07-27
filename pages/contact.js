@@ -183,6 +183,23 @@ const Contact = (props) => {
     <Grid item container direction="row">
       <Head>
         <title key="title">Contact Us | Arc Development</title>
+        <meta
+          name="description"
+          key="description"
+          content="Let us guide you through the custom software design and development process.
+          Send us a message with any of your ideas or questions to get started"
+        />
+        <meta
+          property="og:title"
+          content="Bringing West Coast Technology to the Midwest | Contact Us"
+          key="og:title"
+        />
+        <meta property="og:url" key="og:url" content="arc.com/contact" />
+        <link
+          rel="canonical"
+          key="canonical"
+          href="https://arc.com/contact.js"
+        />
       </Head>
       <Grid
         item

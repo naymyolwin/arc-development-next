@@ -41,6 +41,18 @@ const Revolution = () => {
         <title key="title">
           The Revolution - Cutting-Edge Software | Arc Developemnt
         </title>
+        <meta
+          name="description"
+          key="description"
+          content="Visionary insights, coupled with cutting-edge technology, is a recipe for revolution. Get a free online estimate instantly!"
+        />
+        <meta
+          property="og:title"
+          content="Bringing West Coast Technology to the Midwest | The Revolution"
+          key="og:title"
+        />
+        <meta property="og:url" key="og:url" content="arc.com/revolution" />
+        <link rel="canonical" key="canonical" href="arc.com/revolution" />
       </Head>
       <Grid item className={classes.rowContainer} style={{ marginTop: "2em" }}>
         <Typography
