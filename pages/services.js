@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       padding: 25,
     },
+    [theme.breakpoints.down("xs")]: {
+      padding: 5,
+    },
   },
   learn: {
     ...theme.typography.learnButton,
@@ -36,6 +39,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em",
     },
+    "&:hover": {
+      textDecoration: "none",
+    },
   },
 }));
 
@@ -44,7 +50,7 @@ const Services = (props) => {
   const classes = useStyles();
   const theme = useTheme();
   const matchesSM = useMediaQuery(theme.breakpoints.down("sm"));
-  // const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
+  const matchesXS = useMediaQuery(theme.breakpoints.down("xs"));
   return (
     <Grid container direction="column">
       <Head>
@@ -203,11 +209,12 @@ const Services = (props) => {
               Reach More. Discover More. Sell More.
             </Typography>
             <Typography variant="subtitle1">
-              Optimized for Search Engines, build for speed.
+              Optimized for Search Engines,{matchesXS && <br />} build for
+              speed.
             </Typography>
             <Button
               component={Link}
-              href="/website"
+              href="/websites"
               variant="outlined"
               className={classes.learn}
               onClick={() => {

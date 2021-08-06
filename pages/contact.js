@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
+      textDecoration: "none",
     },
   },
   learn: {
@@ -51,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     [theme.breakpoints.down("md")]: {
       marginBottom: "2em",
+    },
+    "&:hover": {
+      textDecoration: "none",
     },
   },
   message: {

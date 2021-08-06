@@ -83,6 +83,9 @@ export default createMuiTheme({
       borderRadius: 50,
       fontFamily: "Roboto",
       fontWeight: "bold",
+      "&:hover": {
+        textDecoration: "none",
+      },
     },
   },
   overrides: {

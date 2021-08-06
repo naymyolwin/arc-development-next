@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 40,
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
+      textDecoration: "none",
     },
   },
   buttonContainer: {
@@ -44,6 +45,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.9rem",
     height: 45,
     width: 145,
+    "&:hover": {
+      textDecoration: "none",
+    },
   },
   learn: {
     ...theme.typography.learnButton,
@@ -52,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
     padding: 5,
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em",
+    },
+    "&:hover": {
+      textDecoration: "none",
     },
   },
   mainContaienr: {
@@ -87,6 +94,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "12em",
     [theme.breakpoints.down("sm")]: {
       padding: 25,
+    },
+    [theme.breakpoints.down("xs")]: {
+      padding: 5,
     },
   },
   revolutionBackground: {
@@ -321,7 +331,8 @@ const LandingPage = (props) => {
               Reach More. Discover More. Sell More.
             </Typography>
             <Typography variant="subtitle1">
-              Optimized for Search Engines, build for speed.
+              Optimized for Search Engines,{matchesXS && <br />} build for
+              speed.
             </Typography>
             <Button
               component={Link}

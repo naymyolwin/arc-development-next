@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       marginBottom: "2em",
     },
+    "&:hover": {
+      textDecoration: "none",
+    },
   },
   background: {
     backgroundAttachment: "fixed",
@@ -45,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     },
     "&:hover": {
       backgroundColor: theme.palette.secondary.light,
+      textDecoration: "none",
     },
   },
 }));
@@ -72,12 +76,20 @@ const CallToAction = (props) => {
       >
         <Grid container direction="column">
           <Grid item>
-            <Typography variant="h1">
+            <Typography
+              variant="h1"
+              gutterBottom
+              style={{ lineHeight: matchesSM ? 1.1 : null }}
+            >
               Simple Software.
               <br />
+              {matchesSM && <br />}
               Revolutionary Results.
             </Typography>
-            <Typography variant="subtitle2" style={{ fontSize: "1.5rem" }}>
+            <Typography
+              variant="subtitle2"
+              style={{ fontSize: matchesSM ? "1.25rem" : "1.5rem" }}
+            >
               Take advantage of the 21st Century.
             </Typography>
             <Grid container item justify={matchesSM ? "center" : undefined}>

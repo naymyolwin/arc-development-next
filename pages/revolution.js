@@ -6,6 +6,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
+import CallToAction from "../src/components/CallToAction";
+
 import technologyAnimation from "../src/animations/technologyAnimation/data.json";
 
 const useStyles = makeStyles((theme) => ({
@@ -20,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Revolution = () => {
+const Revolution = (props) => {
+  const { setValue } = props;
   const classes = useStyles();
   const theme = useTheme();
   const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
@@ -862,6 +865,9 @@ const Revolution = () => {
             width="100%"
           />
         </Grid>
+      </Grid>
+      <Grid item>
+        <CallToAction setValue={setValue} />
       </Grid>
     </Grid>
   );
