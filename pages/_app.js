@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Head from "next/head";
+//import Head from "next/head";
 import { ThemeProvider } from "@material-ui/core/styles";
 import Theme from "../src/ui/Theme";
 import Header from "../src/components/Header";
 import Footer from "../src/components/Footer";
+import Font from "../src/Font";
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
 export default function MyApp(props) {
   const { Component, pageProps } = props;
@@ -13,6 +15,7 @@ export default function MyApp(props) {
 
   React.useEffect(() => {
     // Remove the server-side injected CSS.
+    Font();
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
@@ -40,7 +43,9 @@ export default function MyApp(props) {
           setValue={setValue}
           setSelectedIndex={setSelectedIndex}
         />
-        <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
+        <LazyLoadComponent>
+          <Footer setValue={setValue} setSelectedIndex={setSelectedIndex} />
+        </LazyLoadComponent>
       </ThemeProvider>
     </React.Fragment>
   );

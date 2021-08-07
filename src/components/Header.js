@@ -24,6 +24,11 @@ import Grow from "@material-ui/core/Grow";
 import Paper from "@material-ui/core/Paper";
 import Popper from "@material-ui/core/Popper";
 import MenuList from "@material-ui/core/MenuList";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Grid from "@material-ui/core/Grid";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 const useStyles = makeStyles((theme) => ({
   logoContainer: {
@@ -112,6 +117,29 @@ const useStyles = makeStyles((theme) => ({
   appbar: {
     zIndex: theme.zIndex.modal + 1,
   },
+  expansion: {
+    "&.Mui-expanded": {
+      margin: 0,
+      borderBottom: 0,
+    },
+    "&::before": {
+      backgroundColor: "rgba(0,0,0,0)",
+    },
+    backgroundColor: theme.palette.common.blue,
+    borderBottom: "1px solid rgba(0,0,0,0.12)",
+  },
+  expansionDetails: {
+    padding: 0,
+    backgroundColor: theme.palette.primary.light,
+  },
+  expansionSummary: {
+    paddingLeft: 16,
+    backgroundColor: (props) =>
+      props.value === 1 ? "rgba(0,0,0,0.14)" : "inherit",
+    "&:hover": {
+      backgroundColor: "rgba(0,0,0,0.05)",
+    },
+  },
 }));
 
 function ElevationScroll(props) {
@@ -126,7 +154,7 @@ function ElevationScroll(props) {
 }
 
 const Header = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(props);
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -173,27 +201,25 @@ const Header = (props) => {
     { name: "Contact us", link: "/contact", activeIndex: 4 },
   ];
 
+  const path = typeof window !== "undefined" ? window.location.pathname : null;
+
+  const activeIndex = () => {
+    const found = routes.find(({ link }) => link === path);
+    const menuFound = menuOptions.find(({ link }) => link === path);
+
+    if (menuFound) {
+      setValue(1);
+      setSelectedIndex(menuFound.selectedIndex);
+    } else if (found === undefined) {
+      setValue(false);
+    } else {
+      setValue(found.activeIndex);
+    }
+  };
+
   useEffect(() => {
-    [...menuOptions, ...routes].forEach((route) => {
-      switch (window.location.pathname) {
-        case `${route.link}`:
-          if (value !== route.activeIndex) {
-            setValue(route.activeIndex);
-            if (route.selectedIndex && route.selectedIndex !== selectedIndex) {
-              setSelectedIndex(route.selectedIndex);
-            }
-          }
-          break;
-        case "/estimate":
-          if (value !== 5) {
-            setValue(5);
-          }
-          break;
-        default:
-          break;
-      }
-    });
-  }, [menuOptions, selectedIndex, routes, value, props]);
+    activeIndex();
+  }, [path]);
 
   const handleChange = (e, newValue) => {
     setValue(newValue);
@@ -333,25 +359,93 @@ const Header = (props) => {
       >
         <div className={classes.toolbarMargin} />
         <List disablePadding>
-          {routes.map((route, index) => (
-            <ListItem
-              key={index}
-              onClick={() => {
-                setOpenDrawer(false);
-                setValue(route.activeIndex);
-              }}
-              divider
-              button
-              component={Link}
-              href={route.link}
-              selected={value === route.activeIndex}
-              classes={{ selected: classes.drawerItemSelected }}
-            >
-              <ListItemText disableTypography className={classes.drawerItem}>
-                {route.name}
-              </ListItemText>
-            </ListItem>
-          ))}
+          {routes.map((route) =>
+            route.name === "Services" ? (
+              <ExpansionPanel
+                elevation={0}
+                key={route.name}
+                classes={{ root: classes.expansion }}
+              >
+                <ExpansionPanelSummary
+                  classes={{ root: classes.expansionSummary }}
+                  expandIcon={<ExpandMoreIcon color="secondary" />}
+                >
+                  <ListItemText
+                    style={{ opacity: props.value === 1 ? 1 : null }}
+                    disableTypography
+                    className={classes.drawerItem}
+                    onClick={() => {
+                      setOpenMenu(false);
+                      setValue(route.activeIndex);
+                    }}
+                  >
+                    <Link href={route.link} color="inherit">
+                      {route.name}
+                    </Link>
+                  </ListItemText>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails
+                  classes={{ root: classes.expansionDetails }}
+                >
+                  <Grid container direction="column">
+                    {menuOptions.map((route) => (
+                      <Grid item>
+                        <ListItem
+                          key={`${route}${route.selectedIndex}`}
+                          onClick={() => {
+                            setOpenDrawer(false);
+                            setSelectedIndex(route.selectedIndex);
+                          }}
+                          divider
+                          button
+                          component={Link}
+                          href={route.link}
+                          selected={
+                            selectedIndex === route.selectedIndex &&
+                            value === 1 &&
+                            window.location.pathname !== "/services"
+                          }
+                          classes={{ selected: classes.drawerItemSelected }}
+                        >
+                          <ListItemText
+                            disableTypography
+                            className={classes.drawerItem}
+                          >
+                            {route.name
+                              .split(" ")
+                              .filter((word) => word !== "Development")
+                              .join(" ")}
+                            <br />
+                            <span style={{ fontSize: "0.75rem" }}>
+                              Development
+                            </span>
+                          </ListItemText>
+                        </ListItem>
+                      </Grid>
+                    ))}
+                  </Grid>
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            ) : (
+              <ListItem
+                key={`${route}${route.activeIndex}`}
+                onClick={() => {
+                  setOpenDrawer(false);
+                  setValue(route.activeIndex);
+                }}
+                divider
+                button
+                component={Link}
+                href={route.link}
+                selected={value === route.activeIndex}
+                classes={{ selected: classes.drawerItemSelected }}
+              >
+                <ListItemText disableTypography className={classes.drawerItem}>
+                  {route.name}
+                </ListItemText>
+              </ListItem>
+            )
+          )}
           <ListItem
             classes={{
               root: classes.drawerItemEstimate,
