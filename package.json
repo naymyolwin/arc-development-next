@@ -1,4 +1,5 @@
 {
+  "homepage": "http://naymyolwin.github.io/arc-development-next",
   "name": "nextjs",
   "version": "4.0.0",
   "private": true,
@@ -12,7 +13,7 @@
     "fs-extra": "^10.0.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
-    "next": "^9.1.4",
+    "next": "^11.0.1",
     "next-compose-plugins": "^2.2.1",
     "next-optimized-images": "^2.6.2",
     "prop-types": "latest",
@@ -26,6 +27,11 @@
     "build": "next build",
     "start": "next start",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
-    "postbuild": "node scripts/sitemap.js"
+    "postbuild": "node scripts/sitemap.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
   }
 }
