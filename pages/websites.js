@@ -54,8 +54,16 @@ const Website = (props) => {
           content="Bringing West Coast Technology to the Midwest | Websites"
           key="og:title"
         />
-        <meta property="og:url" key="og:url" content="arc.com/websites" />
-        <link rel="canonical" key="canonical" href="arc.com/websites" />
+        <meta
+          property="og:url"
+          key="og:url"
+          content="arc-development-next.vercel.app/websites"
+        />
+        <link
+          rel="canonical"
+          key="canonical"
+          href="arc-development-next.vercel.app/websites"
+        />
       </Head>
       <Grid
         item

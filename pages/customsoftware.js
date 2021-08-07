@@ -97,8 +97,16 @@ const CustomSoftware = (props) => {
           content="Bringing West Coast Technology to the Midwest | Custom Software Development"
           key="og:title"
         />
-        <meta property="og:url" key="og:url" content="arc.com/customsoftware" />
-        <link rel="canonical" key="canonical" href="arc.com/customsoftware" />
+        <meta
+          property="og:url"
+          key="og:url"
+          content="arc-development-next.vercel.app/customsoftware"
+        />
+        <link
+          rel="canonical"
+          key="canonical"
+          href="arc-development-next.vercel.app/customsoftware"
+        />
       </Head>
       <Grid
         item

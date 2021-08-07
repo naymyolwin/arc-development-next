@@ -780,8 +780,16 @@ const Estimate = () => {
           content="Bringing West Coast Technology to the Midwest | Free Estimate"
           key="og:title"
         />
-        <meta property="og:url" key="og:url" content="arc.com/estimate" />
-        <link rel="canonical" key="canonical" href="arc.com/estimate" />
+        <meta
+          property="og:url"
+          key="og:url"
+          content="arc-development-next.vercel.app/estimate"
+        />
+        <link
+          rel="canonical"
+          key="canonical"
+          href="arc-development-next.vercel.app/estimate"
+        />
       </Head>
       <Grid
         item
