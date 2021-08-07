@@ -177,7 +177,7 @@ const LandingPage = (props) => {
         <link
           rel="canonical"
           key="canonical"
-          href="arc-development-next.vercel.app"
+          href="https://arc-development-next.vercel.app"
         />
       </Head>
       {/*----- Hero Block -----*/}
