@@ -169,11 +169,7 @@ const LandingPage = (props) => {
           content="Bringing West Coast Technology to the Midwest | Arc Development"
           key="og:title"
         />
-        <meta
-          property="og:url"
-          key="og:url"
-          content="arc-development-next.vercel.app"
-        />
+        <meta property="og:url" key="og:url" content="/" />
         <link
           rel="canonical"
           key="canonical"
